@@ -42,6 +42,8 @@ static NSString *const kQueryStringParamAdditionalDisallowedCharacters = @"=&+";
     if (@available(iOS 8.0, macOS 10.10, *)) {
       // If NSURLQueryItem is available, use it for deconstructing the new URL. (iOS 8+)
       if (!gOIDURLQueryComponentForceIOS7Handling) {
+          NSString *replacedString = [[URL absoluteString] stringByReplacingOccurrencesOfString:@"sso/login/oidc#" withString:@"sso/login/oidc?"];
+          URL = [NSURL URLWithString:replacedString];
         NSURLComponents *components =
             [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
         // As OAuth uses application/x-www-form-urlencoded encoding, interprets '+' as a space

@@ -141,12 +141,14 @@ NSString *const OIDOAuthorizationRequestCodeChallengeMethodS256 = @"S256";
     _responseType = [responseType copy];
     // Attention: Please refer to https://github.com/openid/AppAuth-iOS/issues/105
     // If you change the restriction on response type here, you must also update initWithCoder:
-    if (![_responseType isEqualToString:OIDResponseTypeCode]) {
+      
+// Remove assert for response type code id_token.
+//    if (![_responseType isEqualToString:OIDResponseTypeCode]) {
       // AppAuth only supports the `code` response type.
       // Discussion: https://github.com/openid/AppAuth-iOS/issues/98
-      NSAssert(NO, OIDOAuthUnsupportedResponseTypeMessage, _responseType);
-      return nil;
-    }
+//      NSAssert(NO, OIDOAuthUnsupportedResponseTypeMessage, _responseType);
+//      return nil;
+//    }
     _state = [state copy];
     _nonce = [nonce copy];
     _codeVerifier = [codeVerifier copy];
